@@ -119,11 +119,24 @@ function App() {
       }
     }
     content = <Article title={title} body={body}></Article>
-    contextControl = <li><a href={"/update"+id} onClick={function(event){
+    // 제목이 없는 태그는 복수의 태그를 그룹핑하는 용도
+    contextControl = <>
+    <li><a href={"/update"+id} onClick={function(event){
       event.preventDefault();
       setMode('UPDATE');
     }}
     >update</a></li>
+    <li><input type="button" value="Delete" onClick={function(){
+      const newTopics= []
+      for (let i=0; i<topics.length; i++){
+        if(topics[i].id !== id){
+          newTopics.push(topics[i]);
+        }
+      }
+      setTopics(newTopics);
+      setMode('WELCOME');
+    }}></input></li>
+    </>
 
   } else if (mode === 'CREATE') {
     content = <Create onCreate={function (_title, _body) {
