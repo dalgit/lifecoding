@@ -1,6 +1,11 @@
 import './App.css';
+
+//state 사용하기위해
 import { useState } from 'react';
 
+//컴퍼넌트(사용자 정의 태그)만들기. 반드시 첫대문자
+//event객체가 제어해줌. preventDefault를 써서 클릭시 리로드 안되게
+// => arrow 펑션
 function Header(props) {
   return <h1><a href="/" onClick={function (event) {
     event.preventDefault();
@@ -8,6 +13,10 @@ function Header(props) {
   }}>{props.title}</a></h1>
 }
 
+//form태그: https://ofcourse.kr/html-course/form-%ED%83%9C%EA%B7%B8
+//textarea: https://www.codingfactory.net/11611
+//onsubmit: submit 클릭했을때 from태그에서 발생하는 이벤트
+//event target:은 이벤트가 발생한 태그를 가르킨다
 function Create(props) {
   return <article>
     <h2>Create</h2>
@@ -82,7 +91,9 @@ function Update(props){
 
 
 
-
+// usestate의 인자는 초기값
+// 스테이트값은 mode[0]로 읽음 
+// 바꿀땐 mosd[1] 함수로 바꿈
 function App() {
   //밑에 return에서 id값이 바뀌면 다시 시작하면서 새로 id값이 지정됨
   const [mode, setMode] = useState('WELCOME');
@@ -157,7 +168,7 @@ function App() {
     }}></Update>
   }
 
-
+  //모드의 값이 바뀔경우 app컴퍼넌트가 다시 실행됨
   return (
     <div>
       <Header title="WEB" onchangeMode={function () {
